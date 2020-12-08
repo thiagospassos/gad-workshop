@@ -15,10 +15,10 @@
     <div id="myvue" class="container">
         <h1>{{message}}</h1>
         <ul class="list-group mb-2">
-            <li class="list-group-item">
+            <li class="list-group-item" v-for="todo in todos" :key="'todos'+todo.id">
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="todo1" />
-                    <label for="todo1" class="form-check-label done">Do this thing</label>
+                    <input v-model="todo.done" :checked="todo.done" type="checkbox" class="form-check-input" :id="'todos'+todo.id" />
+                    <label :for="'todos'+todo.id" :class="{'form-check-label': true, 'done': todo.done} ">{{todo.title}}</label>
                 </div>
             </li>
         </ul>
