@@ -20,12 +20,17 @@
         </nav>
         <add-item @added="addTodo"></add-item>
         <ul class="list-group mb-2">
+            <transition-group name="list">
             <li class="list-group-item" v-for="todo in filteredTodos" :key="'todos'+todo.id">
                 <div class="form-check">
                     <input v-model="todo.done" :checked="todo.done" type="checkbox" class="form-check-input" :id="'todos'+todo.id" />
-                    <label :for="'todos'+todo.id" :class="{'form-check-label': true, 'done': todo.done} ">{{todo.title}}</label>
+                    <label :for="'todos'+todo.id" :class="{'form-check-label': true, 'done': todo.done} ">{{todo.title}}
+                        <br>
+                        <small>{{todo.created | friendly-date}}</small>
+                    </label>
                 </div>
             </li>
+            </transition-group>
         </ul>
         <remaining-items :remaining="todos.filter(x=>!x.done).length">
             <template v-slot="success">Go home!!</template>

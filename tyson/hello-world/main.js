@@ -37,17 +37,20 @@ Vue.component('remaining-items', {
     `
 })
 
+Vue.filter("friendly-date", (date, params) => {
+    console.log('params', params)
+    var diff = new Date() - date;
+    if (diff < 1000) return "Just now";
+    if (diff < 60000) return `${Math.floor(diff / 1000)} seconds ago`;
+    if (diff < 60000 * 60) return `${Math.floor(diff / 60000)} minutes ago`;
+    return "Too long ago";
+});
+
 const app = new Vue({
     el: '#myvue',
     data: {
         message: 'Tyson\'s TODO List',
-        todos: [
-            {id: 1, title:"have breakfast",done:false,created: new Date(2010,1,1)},
-            {id: 2, title:"go to work",done:false,created: new Date(2010,1,1)},
-            {id: 3, title:"get lots of money",done:true,created: new Date(2010,1,1)},
-            {id: 4, title:"kill all humans",done:false,created: new Date(2010,1,1)},
-            {id: 5, title:"save the planet",done:false,created: new Date(2010,1,1)},
-        ],
+        todos: [],
         filters: ['All', 'Todo', 'Done'],
         activeFilter: 'All'
     },
@@ -62,6 +65,11 @@ const app = new Vue({
             return this.todos;
         }
     },
+    filters: {
+        formatDate(value, blah) {
+            return value.getYear() + blah;
+        }
+    },
     methods: {
         addTodo(newtodoTitle) {
             var nextId = this.todos.length + 1
@@ -73,4 +81,16 @@ const app = new Vue({
             })
         }
     },
+    created() {
+        this.todos = [
+            {id: 1, title:"have breakfast",done:false,created: new Date()},
+            {id: 2, title:"go to work",done:false,created: new Date()},
+            {id: 3, title:"get lots of money",done:true,created: new Date()},
+            {id: 4, title:"kill all humans",done:false,created: new Date()},
+            {id: 5, title:"save the planet",done:false,created: new Date(2010,1,1)},
+        ];
+    },
+    mounted() {
+
+    }
 })
