@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rss Feeds</title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<link rel="stylesheet" href="main.css">
+
+<body>
+    <div id="myvue" class="container">
+        <h1>{{message}}</h1>
+        <button class="btn btn-primary" @click="showAdd = !showAdd">Add new feed</button>
+        <div class="row" v-if="showAdd">
+            <form @submit.prevent="AddFeed">
+                <label for="feedUrl">Enter feed URL:</label>
+                <input id="feedUrl" class="form-control" v-model="addFeedUrl" type="text"></input>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <ul>
+                    <li v-for="item in filteredFeed">
+                        <a :href="item.link">{{item.title}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-4">
+                <ul>
+                    <li>
+                        <a href="#" @click="feedFilter = 'All'">SHOW ALL</a>
+                    </li>
+                    <li v-for="feed in feeds">
+                        <a href="#" @click="feedFilter = feed.feed.title">{{feed.feed.title}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="main.js">
+</script>
+
+</html>
