@@ -11,6 +11,9 @@
         <router-link to="/about" tag="li" class="nav-item" active-class="active">
           <a class="nav-link">About</a>
         </router-link>
+        <router-link to="/suppliers" tag="li" class="nav-item" active-class="active">
+          <a class="nav-link">Suppliers</a>
+        </router-link>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
