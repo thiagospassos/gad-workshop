@@ -1,6 +1,6 @@
 <template>
   <b-navbar toggleable="lg" type="dark" variant="dark">
-    <b-navbar-brand href="#">Northwind Traders</b-navbar-brand>
+    <b-navbar-brand href="#">{{ $t("app-title") }}</b-navbar-brand>
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
@@ -18,12 +18,23 @@
           <a class="nav-link">About</a>
         </router-link>
       </b-navbar-nav>
+      <b-navbar-nav class="ml-auto">
+        <b-nav-item-dropdown id="i18n-switch" text="Lang" toggle-class="nav-link-custom" right>
+          <b-dropdown-item v-for="(lang, i) in langs" :key="`Lang${i}`" @click="$i18n.locale = lang">{{ lang }}</b-dropdown-item>
+        </b-nav-item-dropdown>
+      </b-navbar-nav>
     </b-collapse>
   </b-navbar>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      langs: ["en", "pt"]
+    };
+  }
+};
 </script>
 
 <style scoped>

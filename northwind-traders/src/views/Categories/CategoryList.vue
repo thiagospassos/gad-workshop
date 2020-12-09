@@ -34,15 +34,20 @@
       </template>
       <template slot="bottom-row">
         <td>
-          <input type="text" v-model="addingCategory.name" placeholder="Name..." class="form-control" :class="{ 'is-invalid': errors && errors.name }"
-          @blur="validate(addingCategory)" />
+          <input type="text" v-model="addingCategory.name" placeholder="Name..." class="form-control" :class="{ 'is-invalid': errors && errors.name }" @blur="validate(addingCategory)" />
           <div class="invalid-feedback" v-if="errors && errors.name">
             {{ errors.name }}
           </div>
         </td>
         <td>
-          <input type="text" v-model="addingCategory.description" placeholder="Description..." class="form-control" :class="{ 'is-invalid': errors && errors.description }"
-          @blur="validate(addingCategory)" />
+          <input
+            type="text"
+            v-model="addingCategory.description"
+            placeholder="Description..."
+            class="form-control"
+            :class="{ 'is-invalid': errors && errors.description }"
+            @blur="validate(addingCategory)"
+          />
           <div class="invalid-feedback" v-if="errors && errors.description">
             {{ errors.description }}
           </div>

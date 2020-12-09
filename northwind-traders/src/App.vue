@@ -9,7 +9,7 @@
         <div class="col">
           <main role="main" class="flex-shrink-0">
             <div class="container">
-              <router-view/>
+              <router-view />
             </div>
           </main>
         </div>
