@@ -8,6 +8,32 @@ const app = new Vue({
             {id: 3, title:"get lots of money",done:true,created: new Date(2010,1,1)},
             {id: 4, title:"kill all humans",done:false,created: new Date(2010,1,1)},
             {id: 5, title:"save the planet",done:false,created: new Date(2010,1,1)},
-        ]
-    }
+        ],
+        newtodoTitle: '',
+        filters: ['All', 'Todo', 'Done'],
+        activeFilter: 'All'
+    },
+    computed: {
+        filteredTodos() {
+            if (this.activeFilter == 'Todo') {
+                return this.todos.filter(x => !x.done);
+            } else if (this.activeFilter == 'Done') {
+                return this.todos.filter(x => x.done);
+            }
+
+            return this.todos;
+        }
+    },
+    methods: {
+        addTodo() {
+            var nextId = this.todos.length + 1
+            this.todos.push({
+                id: nextId,
+                title: this.newtodoTitle,
+                done: false,
+                created: new Date(2020,1,1)
+            })
+            this.newtodoTitle = ''
+        }
+    },
 })

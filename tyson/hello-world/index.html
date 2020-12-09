@@ -14,8 +14,16 @@
 <body>
     <div id="myvue" class="container">
         <h1>{{message}}</h1>
+        <nav class="nav nav-pills mb-2">
+            <a href="#" class="nav-link" v-for="filter in filters" :key="filter" 
+            :class="{active:filter==activeFilter}" @click="activeFilter = filter">{{filter}}</a>
+        </nav>
+        <form class="mb-2" @submit.prevent="addTodo">
+            <input type="text" class="form-control" v-model="newtodoTitle">
+            <!-- <button type="submit" class="btn btn-primary">Add stuff</button> -->
+        </form>
         <ul class="list-group mb-2">
-            <li class="list-group-item" v-for="todo in todos" :key="'todos'+todo.id">
+            <li class="list-group-item" v-for="todo in filteredTodos" :key="'todos'+todo.id">
                 <div class="form-check">
                     <input v-model="todo.done" :checked="todo.done" type="checkbox" class="form-check-input" :id="'todos'+todo.id" />
                     <label :for="'todos'+todo.id" :class="{'form-check-label': true, 'done': todo.done} ">{{todo.title}}</label>
