@@ -23,7 +23,7 @@ Vue.component('remaining-items', {
     <div
             class="alert alert-danger"
             v-if="remaining>10">
-            You've got a long day ahead of you!!!
+            <slot name="danger">You've got a long day ahead of you!!!</slot>
           </div>
           <div
             class="alert alert-secondary"
@@ -32,7 +32,7 @@ Vue.component('remaining-items', {
             {{ remaining }} item(s) remaining.
           </div>
           <div class="alert alert-success" v-else>
-            Hooray!!! You're all done, go to the beach!!!
+            <slot name="success">Hooray!!! You're all done, go to the beach!!!</slot>
           </div>
     `
 })

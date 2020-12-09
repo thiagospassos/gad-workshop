@@ -27,7 +27,9 @@
                 </div>
             </li>
         </ul>
-        <remaining-items :remaining="todos.filter(x=>!x.done).length"></remaining-items>
+        <remaining-items :remaining="todos.filter(x=>!x.done).length">
+            <template v-slot="success">Go home!!</template>
+        </remaining-items>
     </div>
 </body>
 <script src="main.js">
