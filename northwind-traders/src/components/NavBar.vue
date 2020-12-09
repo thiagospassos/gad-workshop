@@ -5,29 +5,16 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <router-link
-          to="/"
-          tag="li"
-          :exact="true"
-          class="nav-item"
-          active-class="active"
-        >
+        <router-link to="/" tag="li" :exact="true" class="nav-item" active-class="active">
           <a class="nav-link">Home</a>
         </router-link>
-        <router-link
-          to="/suppliers"
-          tag="li"
-          class="nav-item"
-          active-class="active"
-        >
+        <router-link to="/suppliers" tag="li" class="nav-item" active-class="active">
           <a class="nav-link">Suppliers</a>
         </router-link>
-        <router-link
-          to="/about"
-          tag="li"
-          class="nav-item"
-          active-class="active"
-        >
+        <router-link to="/categories" tag="li" class="nav-item" active-class="active">
+          <a class="nav-link">Categories</a>
+        </router-link>
+        <router-link to="/about" tag="li" class="nav-item" active-class="active">
           <a class="nav-link">About</a>
         </router-link>
       </b-navbar-nav>
