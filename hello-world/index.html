@@ -14,7 +14,8 @@
     <div id="app" class="container">
         <h1>{{title}}</h1>
         <nav class="nav nav-pills mb-2">
-            <a href="#" class="nav-link" v-for="filter in filters" :key="filter" :class="{active:filter==activeFilter}" @click="activeFilter = filter">{{filter}}</a
+            <a href="#" class="nav-link" v-for="filter in filters" :key="filter" :class="{active:filter==activeFilter}" @click="activeFilter = filter">
+          {{filter}}</a
         >
       </nav>
       <add-item @added="addTodo"></add-item>
@@ -35,12 +36,20 @@
               :for="'todo'+todo.id"
               class="form-check-label"
               :class="{done:todo.done}"
-              >{{todo.title}}</label
+              >{{todo.title}}
+              <br />
+              <small>{{todo.created | friendly-date("params") }}</small>
+              </label
             >
           </div>
         </li>
       </ul>
-      <remaining-items :remaining="todos.filter(d=>!d.done).length"></remaining-items>
+      <remaining-items
+        :remaining="todos.filter(d=>!d.done).length"
+      >
+      <template v-slot:success>Okay! You're done</template>
+      <template v-slot:danger>You're in trouble</template>
+    </remaining-items>
     </div>
 
     <script src="main.js"></script>

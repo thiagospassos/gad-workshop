@@ -4,7 +4,7 @@ Vue.component('remaining-items', {
     <div
         class="alert alert-danger"
         v-if="remaining>10">
-        You've got a long day ahead of you!!!
+        <slot name="danger">You've got a long day ahead of you!!!</slot>
     </div>
     <div
         class="alert alert-secondary"
@@ -13,7 +13,7 @@ Vue.component('remaining-items', {
         {{ remaining }} item(s) remaining.
     </div>
         <div class="alert alert-success" v-else>
-        Hooray!!! You're all done, go to the beach!!!
+        <slot name="success">Hooray!!! You're all done, go to the beach!!!</slot>
     </div>
     `
 })
@@ -36,6 +36,15 @@ Vue.component('add-item', {
         }
     }
 })
+
+Vue.filter("friendly-date", (date, params) => {
+    console.log('params', params)
+    var diff = new Date() - date;
+    if (diff < 1000) return "Just now";
+    if (diff < 60000) return `${Math.floor(diff / 1000)} seconds ago`;
+    if (diff < 60000 * 60) return `${Math.floor(diff / 60000)} minutes ago`;
+    return "Too long ago";
+});
 
 var app = new Vue({
     el: "#app",
