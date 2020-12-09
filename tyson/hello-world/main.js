@@ -1,3 +1,22 @@
+Vue.component('add-item', {
+    template: `
+    <form class="mb-2" @submit.prevent="addTodo">
+        <input type="text" class="form-control" v-model="newtodoTitle">
+    </form>
+    `,
+    data() {
+        return {
+            newtodoTitle:''
+        }
+    },
+    methods:{
+        addTodo() {
+            this.$emit('added', this.newtodoTitle)
+            this.newtodoTitle = ''
+        }
+    }
+})
+
 Vue.component('remaining-items', {
     props: ['remaining'],
     template:`
@@ -29,7 +48,6 @@ const app = new Vue({
             {id: 4, title:"kill all humans",done:false,created: new Date(2010,1,1)},
             {id: 5, title:"save the planet",done:false,created: new Date(2010,1,1)},
         ],
-        newtodoTitle: '',
         filters: ['All', 'Todo', 'Done'],
         activeFilter: 'All'
     },
@@ -45,15 +63,14 @@ const app = new Vue({
         }
     },
     methods: {
-        addTodo() {
+        addTodo(newtodoTitle) {
             var nextId = this.todos.length + 1
             this.todos.push({
                 id: nextId,
-                title: this.newtodoTitle,
+                title: newtodoTitle,
                 done: false,
                 created: new Date(2020,1,1)
             })
-            this.newtodoTitle = ''
         }
     },
 })
