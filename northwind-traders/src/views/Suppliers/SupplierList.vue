@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { SuppliersService } from "@/services/NorthwindServices.js";
+import { SuppliersService } from "@/services/NorthwindService.js";
 
 export default {
   data() {

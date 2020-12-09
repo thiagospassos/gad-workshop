@@ -34,6 +34,12 @@ const routes = [{
             import ('../views/Suppliers/SupplierEdit.vue'),
         props: true
     },
+    {
+        path: '*',
+        name: 'not-found',
+        component: () =>
+            import ('../views/NotFound.vue')
+    }
 ];
 
 const router = new VueRouter({
