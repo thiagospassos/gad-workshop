@@ -20,36 +20,35 @@
       </nav>
       <add-item @added="addTodo"></add-item>
       <ul class="list-group mb-2">
-        <li
-          class="list-group-item"
-          v-for="(todo,index) in filteredTodos"
-          :key="'todo'+index"
-        >
-          <div class="form-check">
-            <input
-              type="checkbox"
-              class="form-check-input"
-              :id="'todo'+todo.id"
-              v-model="todo.done"
-            />
-            <label
-              :for="'todo'+todo.id"
-              class="form-check-label"
-              :class="{done:todo.done}"
-              >{{todo.title}}
-              <br />
-              <small>{{todo.created | friendly-date("params") }}</small>
-              </label
-            >
-          </div>
-        </li>
+        <transition-group name="list">
+          <li
+            class="list-group-item"
+            v-for="(todo,index) in filteredTodos"
+            :key="'todo'+index"
+          >
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                :id="'todo'+todo.id"
+                v-model="todo.done"
+              />
+              <label
+                :for="'todo'+todo.id"
+                class="form-check-label"
+                :class="{done:todo.done}"
+                >{{todo.title}}
+                <br />
+                <small>{{todo.created | friendly-date("params") }}</small>
+              </label>
+            </div>
+          </li>
+        </transition-group>
       </ul>
-      <remaining-items
-        :remaining="todos.filter(d=>!d.done).length"
-      >
-      <template v-slot:success>Okay! You're done</template>
-      <template v-slot:danger>You're in trouble</template>
-    </remaining-items>
+      <remaining-items :remaining="todos.filter(d=>!d.done).length">
+        <template v-slot:success>Okay! You're done</template>
+        <template v-slot:danger>You're in trouble</template>
+      </remaining-items>
     </div>
 
     <script src="main.js"></script>

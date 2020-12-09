@@ -39,6 +39,7 @@ Vue.component('add-item', {
 
 Vue.filter("friendly-date", (date, params) => {
     console.log('params', params)
+    console.log('date', date)
     var diff = new Date() - date;
     if (diff < 1000) return "Just now";
     if (diff < 60000) return `${Math.floor(diff / 1000)} seconds ago`;
@@ -50,12 +51,7 @@ var app = new Vue({
     el: "#app",
     data: {
         title: "GAD Solutions",
-        todos: [
-            { id: 1, title: 'Do this thing', done: true, created: new Date(2020, 12, 1) },
-            { id: 2, title: 'Have Coffee', done: false, created: new Date() },
-            { id: 3, title: 'Have Lunch', done: false, created: new Date() },
-            { id: 4, title: 'Have a drink', done: false, created: new Date() }
-        ],
+        todos: [],
         nextId: 5,
         filters: ['All', 'Todo', 'Done'],
         activeFilter: 'All'
@@ -85,5 +81,14 @@ var app = new Vue({
 
         }
     },
-    created() {},
+    created() {
+        this.todos = [
+            { id: 1, title: 'Do this thing', done: true, created: new Date(2020, 11, 1) },
+            { id: 2, title: 'Have Coffee', done: false, created: new Date() },
+            { id: 3, title: 'Have Lunch', done: false, created: new Date() },
+            { id: 4, title: 'Have a drink', done: false, created: new Date() }
+        ]
+    },
+    mounted() {},
+
 });
