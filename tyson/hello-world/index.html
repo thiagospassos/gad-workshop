@@ -30,6 +30,7 @@
                 </div>
             </li>
         </ul>
+        <remaining-items :remaining="todos.filter(x=>!x.done).length"></remaining-items>
     </div>
 </body>
 <script src="main.js">

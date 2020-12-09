@@ -1,3 +1,23 @@
+Vue.component('remaining-items', {
+    props: ['remaining'],
+    template:`
+    <div
+            class="alert alert-danger"
+            v-if="remaining>10">
+            You've got a long day ahead of you!!!
+          </div>
+          <div
+            class="alert alert-secondary"
+            v-else-if="remaining>0"
+          >
+            {{ remaining }} item(s) remaining.
+          </div>
+          <div class="alert alert-success" v-else>
+            Hooray!!! You're all done, go to the beach!!!
+          </div>
+    `
+})
+
 const app = new Vue({
     el: '#myvue',
     data: {
