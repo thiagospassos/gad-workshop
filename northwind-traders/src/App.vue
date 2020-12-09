@@ -1,32 +1,61 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <header>
+      <nav-bar></nav-bar>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <main role="main" class="flex-shrink-0">
+            <div class="container">
+              <router-view/>
+            </div>
+          </main>
+        </div>
+      </div>
     </div>
-    <router-view />
+    <footer class="footer mt-auto py-3">
+      <div class="container">
+        <span class="text-muted">Northwind Traders &copy;</span>
+      </div>
+    </footer>
   </div>
 </template>
 
+<script>
+import NavBar from "./components/NavBar.vue";
+
+export default {
+  name: "app",
+  components: {
+    NavBar
+  }
+};
+</script>
+
 <style>
+html,
+body {
+  height: 100%;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-#nav {
-  padding: 30px;
+main > .container {
+  padding: 8px 15px 8px 15px;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.footer {
+  background-color: #f5f5f5;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
 }
 </style>

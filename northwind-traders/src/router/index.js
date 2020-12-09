@@ -14,7 +14,26 @@ const routes = [{
         name: "About",
         component: () =>
             import ( /* webpackChunkName: "about" */ "../views/About.vue")
-    }
+    },
+    {
+        path: "/suppliers",
+        name: "suppliers",
+        component: () =>
+            import ("../views/Suppliers/SupplierList.vue")
+    },
+    {
+        path: '/suppliers/new',
+        name: 'suppliers-new',
+        component: () =>
+            import ('../views/Suppliers/SupplierEdit.vue')
+    },
+    {
+        path: '/suppliers/:id',
+        name: 'suppliers-edit',
+        component: () =>
+            import ('../views/Suppliers/SupplierEdit.vue'),
+        props: true
+    },
 ];
 
 const router = new VueRouter({
