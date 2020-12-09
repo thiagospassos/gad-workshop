@@ -17,9 +17,7 @@
             <a href="#" class="nav-link" v-for="filter in filters" :key="filter" :class="{active:filter==activeFilter}" @click="activeFilter = filter">{{filter}}</a
         >
       </nav>
-      <form class="mb-2" @submit.prevent="addTodo">
-        <input type="text" class="form-control" v-model="newTodoTitle" />
-      </form>
+      <add-item @added="addTodo"></add-item>
       <ul class="list-group mb-2">
         <li
           class="list-group-item"
@@ -42,20 +40,7 @@
           </div>
         </li>
       </ul>
-      <div
-        class="alert alert-danger"
-        v-if="todos.filter(t => !t.done).length>10">
-        You've got a long day ahead of you!!!
-      </div>
-      <div
-        class="alert alert-secondary"
-        v-else-if="todos.filter(t => !t.done).length>0"
-      >
-        {{ todos.filter(t => !t.done).length }} item(s) remaining.
-      </div>
-      <div class="alert alert-success" v-else>
-        Hooray!!! You're all done, go to the beach!!!
-      </div>
+      <remaining-items :remaining="todos.filter(d=>!d.done).length"></remaining-items>
     </div>
 
     <script src="main.js"></script>
