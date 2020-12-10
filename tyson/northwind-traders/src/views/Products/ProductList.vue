@@ -42,9 +42,10 @@ export default {
   data() {
     return {
       fields: [
+        { key: "id", sortable: true },
         { key: "name", sortable: true },
-        { key: "unitPrice", label: "Price" },
-        { key: "unitsInStock", label: "Stock" },
+        { key: "unitPrice", sortable: true, label: "Price" },
+        { key: "unitsInStock", sortable: true, label: "Stock" },
         { key: "actions" },
       ],
       products: [],

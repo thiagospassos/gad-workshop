@@ -1,53 +1,23 @@
 <template>
-  <b-navbar toggleable="lg" type="dark" variant="dark">
-    <b-navbar-brand href="#">Northwind Traders</b-navbar-brand>
-    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-    <b-collapse id="nav-collapse" is-nav>
-      <b-navbar-nav>
-        <router-link
-          to="/"
-          tag="li"
-          :exact="true"
-          class="nav-item"
-          active-class="active"
-        >
-          <a class="nav-link">Home</a>
-        </router-link>
-        <router-link
-          to="/about"
-          tag="li"
-          class="nav-item"
-          active-class="active"
-        >
-          <a class="nav-link">About</a>
-        </router-link>
-        <router-link
-          to="/suppliers"
-          tag="li"
-          class="nav-item"
-          active-class="active"
-        >
-          <a class="nav-link">Suppliers</a>
-        </router-link>
-        <router-link
-          to="/categories"
-          tag="li"
-          class="nav-item"
-          active-class="active"
-        >
-          <a class="nav-link">Categories</a>
-        </router-link>
-        <router-link
-          to="/products"
-          tag="li"
-          class="nav-item"
-          active-class="active"
-        >
-          <a class="nav-link">Products</a>
-        </router-link>
-      </b-navbar-nav>
-    </b-collapse>
+  <b-navbar
+    toggleable="md"
+    type="dark"
+    placement="fixed"
+    fill="false"
+    variant="dark"
+  >
+    <div class="container">
+      <b-navbar-brand to="/">Northwind Traders</b-navbar-brand>
+      <b-navbar-toggle target="navbarCollapse"></b-navbar-toggle>
+      <b-collapse is-nav id="navbarCollapse">
+        <b-navbar-nav class="mr-auto">
+          <b-nav-item to="/" :exact="true">Home</b-nav-item>
+          <b-nav-item to="/suppliers">Suppliers</b-nav-item>
+          <b-nav-item to="/categories">Categories</b-nav-item>
+          <b-nav-item to="/products">Products</b-nav-item>
+        </b-navbar-nav>
+      </b-collapse>
+    </div>
   </b-navbar>
 </template>
 
