@@ -3,6 +3,7 @@
     <label>{{ label }}</label>
     <slot>
       <input
+        v-bind:id="id"
         :type="type"
         class="form-control"
         v-model.trim="validationModel.$model"
@@ -20,6 +21,7 @@
 export default {
   name: "BaseInput",
   props: {
+    id: Number,
     label: String,
     validationModel: Object,
     type: {

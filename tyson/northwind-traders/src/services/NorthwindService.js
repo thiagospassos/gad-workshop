@@ -26,9 +26,9 @@ export const SuppliersService = {
 
 export const ProductsService = {
   isUniqueProductName(name) {
-    return apiClient.get('/products?name=' + name).then(result => {
-        return result.data.length === 0
-    })
+    return apiClient.get("/products?name=" + name).then((result) => {
+      return result.data.length === 0;
+    });
   },
   getAll() {
     return apiClient.get("/products");

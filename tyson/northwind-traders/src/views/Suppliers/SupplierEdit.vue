@@ -3,6 +3,7 @@
     <h1>{{ id ? `Supplier #${id}` : "New Supplier" }}</h1>
     <form class="form">
       <base-input
+        id="companyNameField"
         label="Company Name"
         :validationModel="$v.model.companyName"
       ></base-input>

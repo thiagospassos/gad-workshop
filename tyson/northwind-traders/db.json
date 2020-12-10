@@ -2746,7 +2746,7 @@
   "suppliers": [
     {
       "id": 4,
-      "companyName": "Tokyo Tradarzz",
+      "companyName": "Tokyo TradarzzNEW COMPANY",
       "contactName": "Yoshi Nagase",
       "contactTitle": "Marketing Manager",
       "address": {
@@ -3149,6 +3149,12 @@
         "country": "Canada",
         "phone": "(514) 555-2955"
       }
+    },
+    {
+      "companyName": "NEW COMPANY",
+      "contactName": "NEW CONTACT",
+      "contactTitle": "CONTACT TITLE",
+      "id": 30
     }
   ],
   "orders": [
