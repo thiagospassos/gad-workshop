@@ -39,6 +39,11 @@
       "id": 8,
       "description": "Seaweed and fish",
       "name": "Seafood"
+    },
+    {
+      "name": "Sweets",
+      "description": "Yummy stuff",
+      "id": 9
     }
   ],
   "products": [
@@ -47,11 +52,11 @@
       "supplierID": 2,
       "categoryID": 2,
       "quantityPerUnit": "48 - 6 oz jars",
-      "unitPrice": 22,
-      "unitsInStock": 53,
-      "unitsOnOrder": 0,
-      "reorderLevel": 0,
-      "discontinued": false,
+      "unitPrice": "0",
+      "unitsInStock": "0",
+      "unitsOnOrder": "0",
+      "reorderLevel": "0",
+      "discontinued": true,
       "name": "Chef Anton's Cajun Seasoning"
     },
     {
@@ -68,7 +73,7 @@
     },
     {
       "id": 6,
-      "supplierID": 3,
+      "supplierID": 4,
       "categoryID": 2,
       "quantityPerUnit": "12 - 8 oz jars",
       "unitPrice": 25,
