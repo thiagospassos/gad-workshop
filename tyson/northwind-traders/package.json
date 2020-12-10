@@ -8,8 +8,11 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
+    "test:e2e:headless": "vue-cli-service test:e2e --headless",
     "mock-api": "json-server db.json --watch",
-    "pretty": "prettier --write \"./**/*.{js,jsx,json,vue}\""
+    "pretty": "prettier --write \"./**/*.{js,jsx,json,vue}\"",
+    "json-server": "json-server db.json --port 3000",
+    "test:e2e:ci": "npm-run-all -p -r json-server test:e2e:headless"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
@@ -33,6 +36,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-vue": "^6.2.2",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
     "vue-template-compiler": "^2.6.11"
   }
