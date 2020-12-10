@@ -22,7 +22,7 @@
             >Categories</b-nav-item
           >
           <b-nav-item to="/products"
-            ><i class="fas fa-poop vanished fa-fw"></i>Products</b-nav-item
+            ><i class="item fas fa-poop vanished fa-fw"></i>Products</b-nav-item
           >
         </b-navbar-nav>
       </b-collapse>
@@ -34,8 +34,11 @@
 export default {};
 </script>
 
-<style scoped>
-.nav > .container {
-  min-height: 56px;
-}
+<style scoped lang="sass">
+$color: red
+.nav > .container
+  min-height: 56px
+  color: $color
+.item
+  color: red
 </style>
