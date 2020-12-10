@@ -34,6 +34,12 @@ export default {
 };
 </script>
 
+<style lang="scss">
+@import "./assets/custom.scss";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-vue/dist/bootstrap-vue";
+</style>
+
 <style>
 html,
 body {
