@@ -25,13 +25,37 @@
             ><i class="item fas fa-poop vanished fa-fw"></i>Products</b-nav-item
           >
         </b-navbar-nav>
+        <b-navbar-nav v-if="isLoggedIn">
+          {{ user.email }}
+          <b-nav-item @click="logout()">Logout</b-nav-item>
+        </b-navbar-nav>
+        <b-navbar-nav v-if="!isLoggedIn">
+          <b-nav-item to="/login">Login</b-nav-item>
+        </b-navbar-nav>
       </b-collapse>
     </div>
   </b-navbar>
 </template>
 
 <script>
-export default {};
+import { AuthService } from "@/services/NorthwindService.js";
+
+export default {
+  props: {
+    user: Object,
+  },
+  computed: {
+    isLoggedIn() {
+      return !!this.user;
+    },
+  },
+  methods: {
+    logout() {
+      AuthService.logout();
+      this.$router.push("/");
+    },
+  },
+};
 </script>
 
 <style scoped lang="sass">

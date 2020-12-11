@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <header>
-      <nav-bar></nav-bar>
+      <header>
+        <nav-bar :user="auth.currentUser"></nav-bar>
+      </header>
     </header>
 
     <div class="container">
@@ -25,11 +27,21 @@
 
 <script>
 import NavBar from "./components/NavBar.vue";
+import { AuthService } from "@/services/NorthwindService.js";
 
 export default {
   name: "app",
   components: {
     NavBar,
+  },
+  data() {
+    return {
+      auth: Object,
+    };
+  },
+  created() {
+    this.auth = AuthService;
+    AuthService.token();
   },
 };
 </script>
