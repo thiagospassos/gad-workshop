@@ -9,8 +9,7 @@
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
     "test:e2e:headless": "vue-cli-service test:e2e --headless",
-    "pretty": "prettier --write \"./**/*.{js,jsx,json,vue}\"",
-
+    "pretty": "prettier --write \"./**/*.{js,jsx,json,vue}\""
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
