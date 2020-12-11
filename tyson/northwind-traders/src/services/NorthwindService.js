@@ -25,8 +25,14 @@ export const SuppliersService = {
 };
 
 export const ProductsService = {
-  getAllPaged(page) {
-    return apiClient.get(`/products?_page=${page}`);
+  getAllPaged(page, sortColumn, sortOrder) {
+    var query = `/products?_page=${page}`;
+
+    if (sortColumn) {
+      query = `${query}&_sort=${sortColumn}&_order=${sortOrder}`;
+    }
+
+    return apiClient.get(query);
   },
   isUniqueProductName(name) {
     return apiClient.get("/products?name=" + name).then((result) => {

@@ -10,7 +10,15 @@
         <i class="fas fa-plus"></i>
       </router-link>
     </div>
-    <b-table striped hover :items="products" :fields="fields">
+    <b-table
+      striped
+      hover
+      @sort-changed="sortingChanged"
+      :items="products"
+      :fields="fields"
+      :sort-by.sync="sortBy"
+      :sort-desc.sync="sortDesc"
+    >
       <template v-slot:cell(actions)="data">
         <router-link
           tag="button"
@@ -74,6 +82,8 @@ export default {
       products: [],
       productCount: 0,
       page: 1,
+      sortBy: "id",
+      sortDesc: true,
     };
   },
   created() {
@@ -91,6 +101,11 @@ export default {
     },
   },
   methods: {
+    sortingChanged(ctx) {
+      this.sortBy = ctx.sortBy;
+      this.sortDesc = ctx.sortDesc;
+      this.fetchAll();
+    },
     deleteConfirmed() {
       ProductsService.delete(this.productToDelete.id)
         .then(() => {
@@ -107,7 +122,11 @@ export default {
     },
 
     fetchAll() {
-      ProductsService.getAllPaged(this.page)
+      ProductsService.getAllPaged(
+        this.page,
+        this.sortBy,
+        this.sortDesc ? "desc" : "asc"
+      )
         .then((result) => {
           this.productCount = parseInt(result.headers["x-total-count"]);
           this.products = result.data;
