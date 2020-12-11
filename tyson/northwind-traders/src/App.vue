@@ -36,14 +36,18 @@ export default {
 
 <style lang="scss">
 @import "./assets/custom.scss";
+@import "~bootswatch/dist/Darkly/variables";
 @import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/Darkly/bootswatch";
 @import "~bootstrap-vue/dist/bootstrap-vue";
+@import url(https://fonts.googleapis.com/css?family=Comfortaa);
 </style>
 
 <style>
 html,
 body {
   height: 100%;
+  font-family: "Comfortaa", cursive !important;
 }
 
 #app {
