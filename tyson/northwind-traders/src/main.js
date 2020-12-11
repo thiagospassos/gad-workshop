@@ -8,6 +8,7 @@ Vue.use(Vuelidate);
 Vue.use(BootstrapVue);
 
 import "@fortawesome/fontawesome-free/css/all.css";
+import "nprogress/nprogress.css";
 
 import InvalidFeedback from "@/components/InvalidFeedback.vue";
 import BaseInput from "@/components/BaseInput.vue";

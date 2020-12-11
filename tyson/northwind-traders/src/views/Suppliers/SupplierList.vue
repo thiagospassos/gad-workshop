@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Suppliers</h1>
     <div class="clearfix">
       <h1 class="float-left">Suppliers</h1>
       <router-link
