@@ -19,7 +19,12 @@
     </div>
     <footer class="footer mt-auto py-3">
       <div class="container">
-        <span class="text-muted">Northwind Traders &copy;</span>
+        <span class="text-muted">
+          Northwind Traders &copy; 2019 - Build:
+          {{ release.build }} - Environment: {{ release.environment }} - Failed
+          Health Checks:
+          {{ failedHealthCheckCount }}
+        </span>
       </div>
     </footer>
   </div>
@@ -28,6 +33,7 @@
 <script>
 import NavBar from "./components/NavBar.vue";
 import { AuthService } from "@/services/NorthwindService.js";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "app",
@@ -42,6 +48,13 @@ export default {
   created() {
     this.auth = AuthService;
     AuthService.token();
+  },
+  computed: {
+    ...mapState(["release", "healthChecks"]),
+    ...mapGetters(["failedHealthCheckCount"]),
+    release() {
+      return this.$store.state.release;
+    },
   },
 };
 </script>

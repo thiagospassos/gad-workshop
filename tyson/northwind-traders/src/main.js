@@ -12,6 +12,7 @@ import "nprogress/nprogress.css";
 
 import InvalidFeedback from "@/components/InvalidFeedback.vue";
 import BaseInput from "@/components/BaseInput.vue";
+import store from "./store";
 
 Vue.component("InvalidFeedback", InvalidFeedback);
 Vue.component("BaseInput", BaseInput);
@@ -20,5 +21,6 @@ Vue.config.productionTip = false;
 
 new Vue({
   router,
+  store,
   render: (h) => h(App),
 }).$mount("#app");
