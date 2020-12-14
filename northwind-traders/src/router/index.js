@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
 import Unauthorized from '@/views/Unauthorized.vue'
 import Login from '@/views/Login.vue'
+import { AuthService } from '../services/NorthwindService'
 
 Vue.use(VueRouter);
 
@@ -13,10 +14,12 @@ const routes = [{
     },
     {
         path: '/login',
+        name: 'Login',
         component: Login
     },
     {
         path: '/unauthorized',
+        name: 'Unauthorized',
         component: Unauthorized
     },
     {
@@ -29,7 +32,8 @@ const routes = [{
         path: "/suppliers",
         name: "suppliers",
         component: () =>
-            import ("../views/Suppliers/SupplierList.vue")
+            import ("../views/Suppliers/SupplierList.vue"),
+
     },
     {
         path: "/suppliers/new",
@@ -82,5 +86,11 @@ const router = new VueRouter({
     base: process.env.BASE_URL,
     routes
 });
+
+router.beforeEach((to, from, next) => {
+    let allowedRoutes = ['Home', 'Login', 'Unauthorized']
+    if (allowedRoutes.indexOf(to.name) < 0 && !AuthService.isLoggedIn()) next({ name: 'Login' })
+    else next()
+})
 
 export default router;
