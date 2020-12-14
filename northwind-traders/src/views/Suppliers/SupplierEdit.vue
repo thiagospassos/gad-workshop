@@ -4,7 +4,8 @@
     <form class="form">
       <div class="form-group">
         <label class="form-label">Company Name</label>
-        <input class="form-control" type="text" id="companyNameField" v-model="model.companyName" />
+        <input type="text" class="form-control" id="companyNameField" v-model="model.companyName" :class="{ 'is-invalid': errors && errors.companyName }" />
+        <div class="invalid-feedback" v-if="errors && errors.companyName">{{ errors.companyName }}</div>
       </div>
       <div class="form-group">
         <label class="form-label">Contact Name</label>
@@ -32,7 +33,8 @@ export default {
   },
   data() {
     return {
-      model: Object
+      model: Object,
+      errors: undefined
     };
   },
   created() {
@@ -46,7 +48,11 @@ export default {
       if (this.id) {
         SuppliersService.update(this.model)
           .then(r => this.navigateBack())
-          .catch(err => console.error(err));
+          .catch(err => {
+            if (err.response.status == 422) {
+              this.errors = err.response.data.errors;
+            }
+          });
       } else {
         SuppliersService.create(this.model)
           .then(r => this.navigateBack())
