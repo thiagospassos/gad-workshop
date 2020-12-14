@@ -32,6 +32,10 @@
         <b-navbar-nav v-if="!isLoggedIn">
           <b-nav-item to="/login">Login</b-nav-item>
         </b-navbar-nav>
+        <b-nav-item v-if="isLoggedIn" v-b-toggle.collapseNotifications
+          >Notifications
+          <b-badge>{{ $store.getters.notificationCount }}</b-badge>
+        </b-nav-item>
       </b-collapse>
     </div>
   </b-navbar>

@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
+    <button class="btn btn-primaty" @click="clearNav">Clear Navigation</button>
     <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
 </template>
@@ -13,6 +14,11 @@ export default {
   name: "Home",
   components: {
     HelloWorld,
+  },
+  methods: {
+    clearNav() {
+      this.$store.commit("clearNotifications");
+    },
   },
 };
 </script>
