@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <nav-bar></nav-bar>
+      <nav-bar :user="auth.currentUser"></nav-bar>
     </header>
 
     <div class="container">
@@ -25,11 +25,21 @@
 
 <script>
 import NavBar from "./components/NavBar.vue";
+import { AuthService } from "@/services/NorthwindService.js";
 
 export default {
   name: "app",
   components: {
     NavBar
+  },
+  data() {
+    return {
+      auth: Object
+    };
+  },
+  created() {
+    this.auth = AuthService;
+    AuthService.token();
   }
 };
 </script>
@@ -59,9 +69,18 @@ main > .container {
   padding-left: 15px;
 }
 
-@import './assets/custom.scss';
-@import '~bootswatch/dist/Flatly/variables';
-@import '~bootstrap/scss/bootstrap';
-@import '~bootswatch/dist/Flatly/bootswatch';
-@import '~bootstrap-vue/dist/bootstrap-vue';
+@import "./assets/custom.scss";
+@import "~bootswatch/dist/Flatly/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/Flatly/bootswatch";
+@import "~bootstrap-vue/dist/bootstrap-vue";
+
+#nprogress .bar {
+  background: purple;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: purple;
+  border-left-color: purple;
+}
 </style>

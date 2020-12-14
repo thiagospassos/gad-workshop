@@ -4,6 +4,8 @@ import router from "./router";
 import BootstrapVue from "bootstrap-vue";
 
 import "@fortawesome/fontawesome-free/css/all.css";
+import 'nprogress/nprogress.css'
+
 import i18n from "./i18n";
 import Vuelidate from "vuelidate";
 import InvalidFeedback from "@/components/InvalidFeedback.vue";
