@@ -116,6 +116,14 @@ const _reorderNotRequired = helpers.withParams(
   (value, vm) => vm.discontinued || vm.unitsInStock > 0 || vm.unitsOnOrder > 0
 );
 
+const _fail = helpers.withParams(
+  {
+    type: "_failtest",
+    message: "Failed muhahaha",
+  },
+  (value) => value != "fail"
+);
+
 export default {
   props: {
     id: String,
@@ -132,6 +140,7 @@ export default {
           if (this.id) return true;
           return ProductsService.isUniqueProductName(value);
         },
+        _fail,
       },
       unitPrice: {
         decimal,

@@ -1,12 +1,21 @@
 <template>
   <div class="form-group">
     <label>{{ label }}</label>
-    <slot>
+    <slot v-if="type != 'number'">
       <input
         v-bind:id="id"
         :type="type"
         class="form-control"
         v-model.trim="validationModel.$model"
+        :class="{ 'is-invalid': validationModel.$error }"
+      />
+    </slot>
+    <slot v-else>
+      <input
+        v-bind:id="id"
+        type="number"
+        class="form-control"
+        v-model.number="validationModel.$model"
         :class="{ 'is-invalid': validationModel.$error }"
       />
     </slot>
