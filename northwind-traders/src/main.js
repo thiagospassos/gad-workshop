@@ -16,6 +16,16 @@ Vue.component('BaseInput', BaseInput)
 Vue.use(Vuelidate)
 Vue.use(BootstrapVue);
 
+Vue.filter("toCurrency", (value) => {
+    if (typeof value !== "number") return;
+    var formatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+    });
+    return formatter.format(value);
+})
+
 Vue.config.productionTip = false;
 
 new Vue({

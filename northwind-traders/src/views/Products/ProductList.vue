@@ -15,6 +15,11 @@
           <i class="fas fa-trash-alt"></i>
         </button>
       </template>
+      <template v-slot:cell(unitPrice)="data">
+        <div>
+          {{ data.item.unitPrice | toCurrency }}
+        </div>
+      </template>
     </b-table>
   </div>
 </template>

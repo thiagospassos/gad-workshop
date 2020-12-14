@@ -89,17 +89,6 @@ export default {
   created() {
     this.fetchAll();
   },
-  filters: {
-    toCurrency(value) {
-      if (typeof value !== "number") return;
-      var formatter = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        minimumFractionDigits: 2,
-      });
-      return formatter.format(value);
-    },
-  },
   methods: {
     sortingChanged(ctx) {
       this.sortBy = ctx.sortBy;
