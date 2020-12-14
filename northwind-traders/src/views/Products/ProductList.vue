@@ -11,7 +11,7 @@
         <router-link tag="button" :to="{ name: 'products-edit', params: { id: data.item.id.toString(), product: data.item } }" class="btn btn-secondary btn-sm">
           <i class="fas fa-edit"></i>
         </router-link>
-        <button class="btn btn-danger btn-sm" @click="remove(data.item.id)">
+        <button class="btn btn-danger btn-sm" @click="deleteRequested(data.item)">
           <i class="fas fa-trash-alt"></i>
         </button>
       </template>
@@ -21,6 +21,11 @@
         </div>
       </template>
     </b-table>
+    <b-pagination :total-rows="productCount" :per-page="10" v-model="page" @input="fetchAll()" />
+
+    <b-modal id="deleteModal" ref="deleteModal" title="Delete Product?" centered ok-title="Delete" size="md" ok-variant="danger" @ok="deleteConfirmed">
+      <p class="my-4">Are you sure you want to delete '{{ productToDelete.name }}'?</p>
+    </b-modal>
   </div>
 </template>
 <script>
@@ -30,7 +35,10 @@ export default {
   data() {
     return {
       fields: [{ key: "name", sortable: true }, { key: "unitPrice", label: "Price" }, { key: "unitsInStock", label: "Stock" }, { key: "actions" }],
-      products: []
+      products: [],
+      page: 1,
+      productCount: 0,
+      productToDelete: {}
     };
   },
   created() {
@@ -38,17 +46,24 @@ export default {
   },
   methods: {
     fetchAll() {
-      ProductsService.getAll()
-        .then(result => (this.products = result.data))
+      ProductsService.getAllPaged(this.page)
+        .then(result => {
+          this.productCount = parseInt(result.headers["x-total-count"]);
+          this.products = result.data;
+        })
         .catch(error => console.error(error));
     },
-    remove(id) {
-      ProductsService.delete(id)
-        .then(() => (this.products = this.products.filter(p => p.id !== id)))
+    deleteRequested(product) {
+      this.productToDelete = product;
+      this.$refs.deleteModal.show();
+    },
+    deleteConfirmed() {
+      ProductsService.delete(this.productToDelete.id)
+        .then(() => {
+          this.products = this.products.filter(p => p.id !== this.productToDelete.id);
+        })
         .catch(error => console.error(error));
     }
   }
 };
 </script>
-
-<style lang="scss" scoped></style>

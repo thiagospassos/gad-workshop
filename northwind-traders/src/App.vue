@@ -34,7 +34,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 html,
 body {
   height: 100%;
@@ -58,4 +58,10 @@ main > .container {
   padding-right: 15px;
   padding-left: 15px;
 }
+
+@import './assets/custom.scss';
+@import '~bootswatch/dist/Flatly/variables';
+@import '~bootstrap/scss/bootstrap';
+@import '~bootswatch/dist/Flatly/bootswatch';
+@import '~bootstrap-vue/dist/bootstrap-vue';
 </style>
