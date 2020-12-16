@@ -35,6 +35,12 @@ export default new Vuex.Store({
                 context: payload.context,
                 message: payload.message
             });
+        },
+        SET_STATE(state, payload) {
+            let keys = Object.keys(state);
+            keys.forEach(key => {
+                state[key] = payload[key];
+            });
         }
     },
     actions: {
@@ -50,6 +56,13 @@ export default new Vuex.Store({
                 context: "danger",
                 message: payload
             });
+        },
+        ReadInitialStateFromLocalStorage({ commit }) {
+            let state = localStorage.getItem("state");
+            if (state) commit("SET_STATE", JSON.parse(state));
+        },
+        StoreInLocalStorage({ state }) {
+            localStorage.setItem("state", JSON.stringify(state));
         }
-    },
+    }
 });
