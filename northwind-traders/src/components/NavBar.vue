@@ -26,6 +26,10 @@
           <b-dropdown-item v-for="(lang, i) in langs" :key="`Lang${i}`" @click="$i18n.locale = lang">{{ lang }}</b-dropdown-item>
         </b-nav-item-dropdown>
         <b-nav-item v-if="isLoggedIn" @click="logout()">Logout</b-nav-item>
+        <b-nav-item v-if="isLoggedIn" v-b-toggle.collapseNotifications
+          >Notifications
+          <b-badge>{{ $store.getters.notificationCount }}</b-badge>
+        </b-nav-item>
       </b-navbar-nav>
       <b-navbar-nav v-if="!isLoggedIn">
         <b-nav-item to="/login">Login</b-nav-item>
