@@ -1,23 +1,25 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import supplier from "./supplier";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+    modules: { supplier },
     state: {
         release: {
-            build: '1.0.0',
-            environment: 'Development'
+            build: "1.0.0",
+            environment: "Development"
         },
         healthChecks: [
-            { title: 'SMTP check', passed: true },
-            { title: 'Database check', passed: true }
+            { title: "SMTP check", passed: true },
+            { title: "Database check", passed: true }
         ],
         notifications: []
     },
     getters: {
         failedHealthCheckCount: state => {
-            return state.healthChecks.filter(hc => !hc.passed).length
+            return state.healthChecks.filter(hc => !hc.passed).length;
         },
         notificationCount: state => {
             return state.notifications.length;
@@ -25,30 +27,29 @@ export default new Vuex.Store({
     },
     mutations: {
         dismissNotification(state, payload) {
-            state.notifications = state.notifications.filter(n => n.id !== payload)
+            state.notifications = state.notifications.filter(n => n.id !== payload);
         },
         raiseNotification(state, payload) {
             state.notifications.push({
                 id: state.notifications.length + 1,
                 context: payload.context,
                 message: payload.message
-            })
+            });
         }
     },
     actions: {
         raiseSuccessNotification({ commit }, payload) {
-            commit('raiseNotification', {
-                context: 'success',
+            commit("raiseNotification", {
+                context: "success",
                 message: payload
-            })
+            });
         },
         raiseErrorNotification({ commit }, payload) {
-            console.error('Error', payload)
-            commit('raiseNotification', {
-                context: 'danger',
+            console.error("Error", payload);
+            commit("raiseNotification", {
+                context: "danger",
                 message: payload
-            })
+            });
         }
     },
-    modules: {}
 });
